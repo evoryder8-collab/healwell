@@ -70,7 +70,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   0%,100% { opacity:0.6; transform:translate(-50%,-50%) scale(1); }
   50% { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
 }
-.hero-portrait { position:relative; z-index:1; width:220px; height:auto; max-height:360px; object-fit:contain; filter:drop-shadow(0 0 40px rgba(45,212,191,0.15)) drop-shadow(0 0 80px rgba(6,11,20,0.9)); }
+.hero-portrait { position:relative; z-index:1; width:220px; height:auto; max-height:360px; object-fit:contain; mix-blend-mode:screen; filter:drop-shadow(0 0 40px rgba(45,212,191,0.2)) drop-shadow(0 0 60px rgba(45,212,191,0.08)); }
 
 .hero-brand { font-family:var(--font-display); font-size:clamp(42px,7vw,72px); font-weight:300; letter-spacing:6px; text-transform:lowercase; margin-bottom:8px; opacity:0; animation:heroFade 1s var(--ease) 0.5s forwards; }
 .hero-brand span { background:linear-gradient(135deg, var(--teal), #7DD3C0, var(--teal-dim)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
@@ -240,7 +240,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   .hero-credentials { gap:16px; }
   .modal-card { max-height:92vh; }
   .packages-grid { gap:16px; }
-  .hero-portrait { width:180px; max-height:280px; }
+  .hero-portrait { width:175px; max-height:260px; }
   .hero-logo-img { width:90px; }
   .hero-portrait-wrap::before { width:220px; height:220px; }
 }
@@ -282,8 +282,8 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 
   <div class="hero-credentials">
     <span class="hero-cred"><span class="dot"></span>Multi-Gold Award Winner</span>
+    <span class="hero-cred"><span class="dot"></span>Transformational Therapist</span>
     <span class="hero-cred"><span class="dot"></span>Wim Hof Method Instructor</span>
-    <span class="hero-cred"><span class="dot"></span>World-Class Massage Therapist</span>
     <span class="hero-cred"><span class="dot"></span>by Matthew Hua</span>
   </div>
 
@@ -453,7 +453,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
     <div class="about-card">
       <p class="section-label">Your Practitioner</p>
       <h2 class="about-name">Matthew Hua</h2>
-      <p class="about-role">Transformation Therapist · Wim Hof Instructor · World-Class Bodyworker</p>
+      <p class="about-role">Transformational Therapist · Wim Hof Instructor · World-Class Bodyworker</p>
       <p class="about-text">I designed this method so each element pulls a clear lever your nervous system understands. Six essentials — Hot/Cold, Breathwork, Mindset, Body, Movement, Community — woven into a weekly cadence you can live with, so progress accumulates quietly.</p>
       <p class="about-text">You'll feel the shift: deeper sleep, steadier focus, reliable energy, your Inner Spark beginning to steer better choices in work and life.</p>
       <div class="about-awards">
