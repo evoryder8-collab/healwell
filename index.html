@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healwell — Transformation Therapy Method™ by Matthew Hua</title>
+<meta name="description" content="World-class transformation packages combining breathwork, contrast therapy, bodywork, mindset coaching & movement. By multi-gold-award-winning therapist Matthew Hua.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   HEALWELL — Transformation Therapy Method™
+   Ultra-luxury wellness landing page
+   ═══════════════════════════════════════════ */
+
+:root {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --bg-deep: #060B14;
+  --bg-card: #0B1120;
+  --bg-card-hover: #0E1528;
+  --teal: #2DD4BF;
+  --teal-dim: #1A9E8F;
+  --teal-glow: rgba(45,212,191,0.12);
+  --gold: #C8A951;
+  --gold-dim: #A08940;
+  --cream: #F0EDE6;
+  --text-secondary: #B8C0D0;
+  --text-muted: #6B7A90;
+  --border-faint: rgba(255,255,255,0.06);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+
+body { font-family:var(--font-body); background:var(--bg-deep); color:var(--cream); overflow-x:hidden; line-height:1.6; }
+
+::selection { background:rgba(45,212,191,0.25); color:#fff; }
+
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--bg-deep); }
+::-webkit-scrollbar-thumb { background:var(--teal-dim); border-radius:5px; }
+
+/* ═══════ ANIMATED BACKGROUND ═══════ */
+.bg-ambient { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.bg-ambient::before { content:''; position:absolute; top:-30%; right:-20%; width:800px; height:800px; background:radial-gradient(circle, rgba(45,212,191,0.04) 0%, transparent 70%); animation:floatOrb 25s ease-in-out infinite; }
+.bg-ambient::after { content:''; position:absolute; bottom:-20%; left:-15%; width:600px; height:600px; background:radial-gradient(circle, rgba(100,80,200,0.03) 0%, transparent 70%); animation:floatOrb 30s ease-in-out infinite reverse; }
+@keyframes floatOrb { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(60px,-40px) scale(1.1)} 66%{transform:translate(-30px,50px) scale(0.95)} }
+
+/* ═══════ STARDUST CANVAS ═══════ */
+#stardust { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* ═══════ LAYOUT ═══════ */
+.page-wrap { position:relative; z-index:1; }
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+
+/* ═══════ HERO ═══════ */
+.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:80px 24px 60px; position:relative; }
+
+.hero-logo { width:90px; height:90px; margin-bottom:28px; opacity:0; animation:heroFade 1s var(--ease) 0.2s forwards; }
+.hero-logo svg { width:100%; height:100%; }
+
+.hero-brand { font-family:var(--font-display); font-size:clamp(42px,7vw,72px); font-weight:300; letter-spacing:6px; text-transform:lowercase; margin-bottom:8px; opacity:0; animation:heroFade 1s var(--ease) 0.4s forwards; }
+.hero-brand span { background:linear-gradient(135deg, var(--teal), #7DD3C0, var(--teal-dim)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+.hero-method { font-size:10px; font-weight:600; letter-spacing:5px; text-transform:uppercase; color:var(--teal-dim); margin-bottom:36px; opacity:0; animation:heroFade 1s var(--ease) 0.6s forwards; }
+
+.hero-tagline { font-family:var(--font-display); font-size:clamp(18px,2.5vw,26px); font-weight:300; font-style:italic; color:var(--text-secondary); max-width:600px; line-height:1.7; opacity:0; animation:heroFade 1s var(--ease) 0.8s forwards; }
+
+.hero-cta { margin-top:44px; display:flex; flex-direction:column; align-items:center; gap:16px; opacity:0; animation:heroFade 1s var(--ease) 1.2s forwards; }
+.hero-btn { display:inline-flex; align-items:center; gap:10px; padding:16px 40px; border-radius:50px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:all 0.5s var(--ease); font-family:var(--font-body); cursor:pointer; border:none; }
+.hero-btn-primary { background:linear-gradient(135deg, var(--teal-dim), var(--teal)); color:var(--bg-deep); box-shadow:0 8px 40px rgba(45,212,191,0.2); }
+.hero-btn-primary:hover { box-shadow:0 12px 50px rgba(45,212,191,0.35); transform:translateY(-2px); }
+
+.hero-credentials { margin-top:40px; display:flex; flex-wrap:wrap; justify-content:center; gap:28px; opacity:0; animation:heroFade 1s var(--ease) 1.5s forwards; }
+.hero-cred { font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
+.hero-cred .dot { width:4px; height:4px; border-radius:50%; background:var(--teal-dim); }
+
+@keyframes heroFade { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-scroll-cue { position:absolute; bottom:48px; left:0; right:0; z-index:3; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:0; animation:heroFade 1s var(--ease) 2s forwards; }
+.scroll-line { width:1px; height:40px; background:linear-gradient(to bottom, transparent, var(--teal-dim)); animation:scrollPulse 2s ease-in-out infinite; }
+.scroll-text { font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); }
+@keyframes scrollPulse { 0%,100%{opacity:0.3;height:30px} 50%{opacity:0.8;height:45px} }
+
+/* ═══════ SECTION TITLES ═══════ */
+.section-label { font-size:9px; font-weight:600; letter-spacing:5px; text-transform:uppercase; color:var(--teal-dim); text-align:center; margin-bottom:14px; }
+.section-title { font-family:var(--font-display); font-size:clamp(28px,4vw,44px); font-weight:300; text-align:center; margin-bottom:16px; color:var(--cream); }
+.section-subtitle { font-size:14px; color:var(--text-muted); text-align:center; max-width:580px; margin:0 auto 50px; font-weight:300; line-height:1.8; }
+
+/* ═══════ METHOD PILLARS ═══════ */
+.pillars-section { padding:100px 0 80px; }
+.pillars-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; max-width:960px; margin:0 auto; }
+@media(max-width:768px) { .pillars-grid { grid-template-columns:repeat(2, 1fr); } }
+@media(max-width:480px) { .pillars-grid { grid-template-columns:1fr; } }
+
+.pillar { padding:32px 24px; border-radius:18px; background:rgba(11,17,32,0.6); border:1px solid var(--border-faint); text-align:center; transition:all 0.5s var(--ease); position:relative; overflow:hidden; }
+.pillar:hover { border-color:rgba(45,212,191,0.15); transform:translateY(-4px); background:rgba(11,17,32,0.8); }
+.pillar-icon { font-size:32px; margin-bottom:16px; display:block; }
+.pillar-name { font-family:var(--font-display); font-size:20px; font-weight:400; margin-bottom:10px; color:var(--cream); }
+.pillar-desc { font-size:12px; color:var(--text-muted); font-weight:300; line-height:1.7; }
+
+/* ═══════ INNERSPARK BANNER ═══════ */
+.innerspark { padding:60px 0; }
+.innerspark-card { max-width:800px; margin:0 auto; padding:48px 40px; border-radius:22px; background:linear-gradient(135deg, rgba(45,212,191,0.06), rgba(100,80,200,0.04)); border:1px solid rgba(45,212,191,0.1); text-align:center; position:relative; overflow:hidden; }
+.innerspark-card::before { content:'✦'; position:absolute; top:20px; right:28px; font-size:20px; color:var(--teal); opacity:0.3; }
+.innerspark-label { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
+.innerspark-title { font-family:var(--font-display); font-size:24px; font-weight:300; margin-bottom:14px; }
+.innerspark-desc { font-size:13px; color:var(--text-muted); font-weight:300; line-height:1.8; max-width:560px; margin:0 auto; }
+.innerspark-included { display:inline-block; margin-top:18px; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--teal-dim); padding:6px 16px; border:1px solid rgba(45,212,191,0.15); border-radius:50px; }
+
+/* ═══════ PACKAGES SECTION ═══════ */
+.packages-section { padding:80px 0 100px; }
+.packages-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; max-width:1140px; margin:0 auto; }
+@media(max-width:1024px) { .packages-grid { grid-template-columns:repeat(2, 1fr); } }
+@media(max-width:600px) { .packages-grid { grid-template-columns:1fr; max-width:400px; } }
+
+/* ═══════ PACKAGE CARDS ═══════ */
+.pkg-card { border-radius:22px; overflow:hidden; display:flex; flex-direction:column; transition:all 0.6s var(--ease); position:relative; background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); box-shadow:0 4px 30px rgba(0,0,0,0.3); }
+.pkg-card:hover { transform:translateY(-6px); border-color:rgba(45,212,191,0.15); box-shadow:0 12px 50px rgba(0,0,0,0.4); }
+
+/* Tier accent colors */
+.pkg-card[data-tier="single"] { border-color:rgba(200,169,81,0.12); }
+.pkg-card[data-tier="ignite"] { border-color:rgba(255,140,50,0.12); }
+.pkg-card[data-tier="immersion"] { border-color:rgba(45,212,191,0.14); }
+.pkg-card[data-tier="metamorphosis"] { background:linear-gradient(180deg, rgba(10,20,40,0.95), var(--bg-card)); border-color:rgba(45,212,191,0.22); box-shadow:0 4px 40px rgba(45,212,191,0.06), inset 0 1px 0 rgba(45,212,191,0.1); }
+.pkg-card[data-tier="embody"] { border-color:rgba(120,100,220,0.16); }
+.pkg-card[data-tier="longevity"] { border-color:rgba(200,120,180,0.14); }
+
+.pkg-card[data-tier="metamorphosis"]:hover { box-shadow:0 16px 60px rgba(45,212,191,0.12); }
+
+/* Featured ribbon */
+.featured-ribbon { position:absolute; top:18px; left:18px; padding:5px 14px; border-radius:8px; font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; z-index:3; background:linear-gradient(135deg, var(--teal-dim), var(--teal)); color:var(--bg-deep); }
+
+.pkg-badge { position:absolute; top:18px; right:18px; padding:5px 14px; border-radius:8px; font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; z-index:3; }
+.pkg-badge.duration { background:rgba(45,212,191,0.08); color:var(--teal); border:1px solid rgba(45,212,191,0.15); backdrop-filter:blur(12px); }
+
+/* THUMBNAILS */
+.pkg-thumb { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; }
+.pkg-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s var(--ease), filter 0.7s ease; filter:brightness(0.7) saturate(0.85); }
+.pkg-card:hover .pkg-thumb img { transform:scale(1.04); filter:brightness(0.85) saturate(1); }
+@media(max-width:1024px) {
+  .pkg-thumb img { filter:brightness(0.8) saturate(0.92) !important; }
+  .pkg-card:hover .pkg-thumb img, .pkg-card:active .pkg-thumb img { filter:brightness(0.88) saturate(1) !important; }
+}
+
+/* Card body */
+.pkg-info { padding:24px 22px; flex:1; display:flex; flex-direction:column; }
+.pkg-tier-name { font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--teal-dim); margin-bottom:6px; }
+.pkg-title { font-family:var(--font-display); font-size:22px; font-weight:400; margin-bottom:6px; color:var(--cream); }
+.pkg-tagline { font-size:12px; color:var(--text-muted); font-weight:300; line-height:1.6; margin-bottom:16px; }
+
+.pkg-highlights { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.pkg-hl { font-size:10px; font-weight:500; color:var(--text-secondary); padding:4px 10px; border-radius:50px; background:rgba(45,212,191,0.05); border:1px solid rgba(45,212,191,0.08); letter-spacing:0.3px; }
+
+.pkg-price-row { display:flex; align-items:baseline; gap:8px; margin-top:auto; margin-bottom:16px; }
+.pkg-price { font-family:var(--font-display); font-size:28px; font-weight:500; color:var(--cream); }
+.pkg-price-unit { font-size:11px; color:var(--text-muted); font-weight:300; }
+.pkg-monthly { font-size:11px; color:var(--text-muted); font-weight:300; margin-bottom:16px; }
+
+.pkg-btn { display:block; width:100%; padding:14px; border-radius:12px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; text-align:center; border:none; cursor:pointer; transition:all 0.4s var(--ease); font-family:var(--font-body); }
+.pkg-btn-primary { background:linear-gradient(135deg, var(--teal-dim), var(--teal)); color:var(--bg-deep); }
+.pkg-btn-primary:hover { box-shadow:0 8px 32px rgba(45,212,191,0.3); }
+.pkg-btn-outline { background:rgba(45,212,191,0.06); color:var(--teal); border:1px solid rgba(45,212,191,0.15); }
+.pkg-btn-outline:hover { background:rgba(45,212,191,0.12); border-color:var(--teal); }
+
+/* ═══════ ABOUT / CREDIBILITY ═══════ */
+.about-section { padding:80px 0; }
+.about-card { max-width:800px; margin:0 auto; text-align:center; }
+.about-name { font-family:var(--font-display); font-size:32px; font-weight:300; margin-bottom:6px; }
+.about-role { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--teal-dim); margin-bottom:24px; }
+.about-text { font-size:14px; color:var(--text-muted); font-weight:300; line-height:1.9; max-width:640px; margin:0 auto 28px; }
+.about-awards { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:28px; }
+.award-tag { font-size:10px; font-weight:500; letter-spacing:1px; color:var(--gold); padding:8px 18px; border-radius:50px; border:1px solid rgba(200,169,81,0.15); background:rgba(200,169,81,0.04); }
+
+/* ═══════ FOOTER ═══════ */
+.site-footer { padding:60px 24px 40px; text-align:center; border-top:1px solid var(--border-faint); }
+.footer-brand { font-family:var(--font-display); font-size:24px; font-weight:300; letter-spacing:4px; color:var(--text-muted); margin-bottom:12px; }
+.footer-legal { font-size:11px; color:var(--text-muted); font-weight:300; }
+.footer-legal a { color:var(--teal-dim); text-decoration:none; }
+
+/* ═══════ MODAL ═══════ */
+.modal-overlay { display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.88); backdrop-filter:blur(16px); justify-content:center; align-items:flex-start; padding:40px 16px; overflow-y:auto; }
+.modal-overlay.open { display:flex; }
+.modal-card { background:linear-gradient(180deg, #080E1A, #050508); border:1px solid rgba(45,212,191,0.1); border-radius:22px; max-width:620px; width:100%; position:relative; overflow:hidden; box-shadow:0 40px 100px rgba(0,0,0,0.7); display:flex; flex-direction:column; max-height:min(88vh, 820px); }
+.modal-close-x { position:absolute; top:14px; right:14px; background:none; border:none; color:var(--text-muted); font-size:16px; cursor:pointer; padding:8px; z-index:2; transition:color 0.3s ease; }
+.modal-close-x:hover { color:var(--cream); }
+.modal-header { padding:28px 28px 0; text-align:center; flex-shrink:0; }
+.modal-tier-row { display:flex; justify-content:center; align-items:baseline; gap:12px; margin-bottom:6px; }
+.modal-tier-name { font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--teal-dim); }
+.modal-tier-price { font-family:var(--font-display); font-size:28px; font-weight:600; color:var(--cream); }
+.modal-tagline { font-size:13px; color:var(--text-muted); font-weight:300; padding-bottom:20px; border-bottom:1px solid var(--border-faint); }
+.modal-notice { padding:14px 28px; text-align:center; flex-shrink:0; }
+.modal-notice p { font-size:11px; color:var(--text-muted); font-weight:300; }
+.modal-scroll-wrap { flex:1 1 auto; overflow-y:auto; min-height:0; }
+.modal-scroll-wrap::-webkit-scrollbar { width:3px; }
+.modal-scroll-wrap::-webkit-scrollbar-thumb { background:var(--teal-dim); border-radius:3px; }
+.modal-body { padding:0 28px 20px; }
+.modal-body h4 { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--teal-dim); margin:18px 0 10px; }
+.modal-body ul { list-style:none; padding:0; }
+.modal-body li { font-size:13px; color:var(--text-secondary); font-weight:300; padding:5px 0; padding-left:18px; position:relative; line-height:1.6; }
+.modal-body li::before { content:'✓'; position:absolute; left:0; color:var(--teal); font-size:11px; }
+
+.modal-conditions { padding:16px 28px 20px; border-top:1px solid rgba(45,212,191,0.1); background:rgba(6,10,18,0.6); }
+.cond-heading { font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--teal-dim); margin-bottom:14px; }
+.cond-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:600px) { .cond-grid { grid-template-columns:1fr; } }
+.cond-item { padding:14px; border-radius:10px; background:rgba(255,255,255,0.02); }
+.cond-title { font-size:10px; font-weight:600; color:var(--text-secondary); margin-bottom:5px; display:block; }
+.cond-item p { font-size:11px; font-weight:300; color:var(--text-muted); line-height:1.6; }
+
+.modal-footer { flex-shrink:0; padding:20px 28px 28px; display:flex; flex-direction:column; gap:8px; }
+.modal-btn-agree { padding:15px; border-radius:12px; background:linear-gradient(135deg, var(--teal-dim), var(--teal)); color:var(--bg-deep); font-size:13px; font-weight:700; border:none; cursor:pointer; letter-spacing:0.5px; transition:all 0.3s ease; font-family:var(--font-body); }
+.modal-btn-agree:hover { box-shadow:0 8px 32px rgba(45,212,191,0.3); }
+.modal-btn-back { padding:10px; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; transition:color 0.3s ease; font-family:var(--font-body); }
+.modal-btn-back:hover { color:var(--text-secondary); }
+
+/* ═══════ SUMUP TIP ═══════ */
+.sumup-tip { position:fixed; bottom:0; left:0; right:0; z-index:9999; background:rgba(6,11,20,0.95); backdrop-filter:blur(16px); border-top:1px solid rgba(45,212,191,0.08); padding:14px 24px; display:flex; align-items:center; justify-content:center; gap:10px; transform:translateY(100%); transition:transform 0.5s var(--ease); }
+.sumup-tip.visible { transform:translateY(0); }
+.tip-icon { font-size:16px; }
+.sumup-tip p { font-size:12px; color:var(--text-muted); font-weight:300; }
+.sumup-tip strong { color:var(--teal); font-weight:600; }
+
+/* ═══════ RESPONSIVE ═══════ */
+@media(max-width:768px) {
+  .hero { padding:60px 20px 50px; }
+  .hero-credentials { gap:16px; }
+  .modal-card { max-height:92vh; }
+  .packages-grid { gap:16px; }
+}
+
+/* ═══════ REVEAL ANIMATION ═══════ */
+.reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="bg-ambient"></div>
+<canvas id="stardust"></canvas>
+
+<div class="page-wrap">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lotusG" x1="20" y1="80" x2="80" y2="20">
+          <stop offset="0%" stop-color="#1A9E8F"/>
+          <stop offset="50%" stop-color="#2DD4BF"/>
+          <stop offset="100%" stop-color="#7C6DD8"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 15 C50 15 30 35 30 55 C30 70 40 80 50 85 C60 80 70 70 70 55 C70 35 50 15 50 15Z" fill="url(#lotusG)" opacity="0.3"/>
+      <path d="M50 20 C50 20 20 45 25 65 C28 75 38 80 50 82 C62 80 72 75 75 65 C80 45 50 20 50 20Z" fill="url(#lotusG)" opacity="0.5"/>
+      <path d="M50 28 C45 40 35 50 35 60 C35 72 42 78 50 80 C58 78 65 72 65 60 C65 50 55 40 50 28Z" fill="url(#lotusG)" opacity="0.8"/>
+      <circle cx="50" cy="58" r="6" fill="#2DD4BF" opacity="0.9"/>
+    </svg>
+  </div>
+  <h1 class="hero-brand"><span>healwell</span></h1>
+  <p class="hero-method">Transformation Therapy Method™</p>
+  <p class="hero-tagline">Rhythm, sequence and dose — tuned to your nervous system. Six elements woven into a practice you can actually live with, until momentum becomes your baseline.</p>
+
+  <div class="hero-cta">
+    <a href="#packages" class="hero-btn hero-btn-primary">Explore Packages</a>
+  </div>
+
+  <div class="hero-credentials">
+    <span class="hero-cred"><span class="dot"></span>Multi-Gold Award Winner</span>
+    <span class="hero-cred"><span class="dot"></span>Wim Hof Method Instructor</span>
+    <span class="hero-cred"><span class="dot"></span>World-Class Massage Therapist</span>
+    <span class="hero-cred"><span class="dot"></span>by Matthew Hua</span>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Discover</span>
+  </div>
+</section>
+
+<!-- ══════════════ METHOD PILLARS ══════════════ -->
+<section class="pillars-section reveal">
+  <div class="container">
+    <p class="section-label">The Six Elements</p>
+    <h2 class="section-title">Every lever your nervous system needs</h2>
+    <p class="section-subtitle">Each element pulls a clear lever. Together, they create a rhythm of transformation that stays.</p>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-icon">🧊</span>
+        <h3 class="pillar-name">Hot / Cold</h3>
+        <p class="pillar-desc">Deliberate temperature contrast to train resilience, speed recovery, and leave you energized and calm.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌬</span>
+        <h3 class="pillar-name">Breathwork</h3>
+        <p class="pillar-desc">Guided breathing to regulate your state on demand — steadier nerves, clearer focus, deeper sleep.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧠</span>
+        <h3 class="pillar-name">Mindset</h3>
+        <p class="pillar-desc">Clarify your intention, build simple rituals, and stay accountable so change becomes automatic.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🤲</span>
+        <h3 class="pillar-name">Body</h3>
+        <p class="pillar-desc">Therapeutic massage, restorative sleep routines, nutrient-dense fueling, and vagus nerve release.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏋️</span>
+        <h3 class="pillar-name">Movement</h3>
+        <p class="pillar-desc">Smart strength and mobility tailored to your life — better posture, joints that move well, everyday capacity.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🤝</span>
+        <h3 class="pillar-name">Community</h3>
+        <p class="pillar-desc">Shared sessions and group momentum that create safety, encouragement, and lasting adherence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ INNERSPARK ══════════════ -->
+<section class="innerspark reveal">
+  <div class="container">
+    <div class="innerspark-card">
+      <p class="innerspark-label">✦ InnerSpark</p>
+      <h3 class="innerspark-title">Your personal spark — the steady drive that turns intention into action</h3>
+      <p class="innerspark-desc">Through focused breath, mindful hot/cold exposure, and clear commitments, we help you access follow-through that lasts. InnerSpark Ignition is the starting point of every package.</p>
+      <span class="innerspark-included">Included in every package</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PACKAGES ══════════════ -->
+<section id="packages" class="packages-section reveal">
+  <div class="container">
+    <p class="section-label">Choose Your Path</p>
+    <h2 class="section-title">Transformation Packages</h2>
+    <p class="section-subtitle">Whether you need a focused reset, a structured build, or a complete realignment — every path lights your Inner Spark.</p>
+
+    <div class="packages-grid">
+
+      <!-- SINGLE -->
+      <div class="pkg-card" data-tier="single">
+        <span class="pkg-badge duration">60 – 90 min</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=640&q=80" alt="Single Treatment" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Single</span>
+          <h3 class="pkg-title">Focused Session</h3>
+          <p class="pkg-tagline">A single targeted treatment — the perfect introduction to the method.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">Single Treatment</span><span class="pkg-hl">InnerSpark Ignition</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">150 – 450</span><span class="pkg-price-unit">CHF</span></div>
+          <button class="pkg-btn pkg-btn-outline" onclick="openModal('single')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- IGNITE -->
+      <div class="pkg-card" data-tier="ignite">
+        <span class="pkg-badge duration">120 – 150 min</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=640&q=80" alt="Ignite Package" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Ignite</span>
+          <h3 class="pkg-title">First Spark</h3>
+          <p class="pkg-tagline">Choose your element — breathwork, contrast therapy, or mindset training — and feel the shift begin.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">Choose One Element</span><span class="pkg-hl">Cold Shower PDF</span><span class="pkg-hl">InnerSpark</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">497</span><span class="pkg-price-unit">CHF</span></div>
+          <button class="pkg-btn pkg-btn-outline" onclick="openModal('ignite')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- IMMERSION -->
+      <div class="pkg-card" data-tier="immersion">
+        <span class="pkg-badge duration">Half Day</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=640&q=80" alt="Immersion Package" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Immersion</span>
+          <h3 class="pkg-title">Deep Reset</h3>
+          <p class="pkg-tagline">Half a day of full integration — ice plunge, sauna, breathwork, contrast therapy, bodywork and mindset combined.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">All Core Elements</span><span class="pkg-hl">Bodywork</span><span class="pkg-hl">DEXA Scan</span><span class="pkg-hl">Online Coaching</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">1,397</span><span class="pkg-price-unit">CHF</span></div>
+          <button class="pkg-btn pkg-btn-outline" onclick="openModal('immersion')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- METAMORPHOSIS (FEATURED) -->
+      <div class="pkg-card" data-tier="metamorphosis">
+        <span class="featured-ribbon">Most Popular</span>
+        <span class="pkg-badge duration">Full Day</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80" alt="Metamorphosis Package" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Metamorphosis</span>
+          <h3 class="pkg-title">Full Transformation</h3>
+          <p class="pkg-tagline">A complete day of transformation — every element activated, personal training, fitness assessment, and follow-up integration.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">All Elements × 6</span><span class="pkg-hl">Personal Training</span><span class="pkg-hl">DEXA + Fitness</span><span class="pkg-hl">Photo-Video</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">1,997</span><span class="pkg-price-unit">CHF</span></div>
+          <button class="pkg-btn pkg-btn-primary" onclick="openModal('metamorphosis')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- EMBODY -->
+      <div class="pkg-card" data-tier="embody">
+        <span class="pkg-badge duration">90 Days</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=640&q=80" alt="Embody Package" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Embody</span>
+          <h3 class="pkg-title">Structured Build</h3>
+          <p class="pkg-tagline">Three months of deep integration — 10 personal training sessions, Wim Hof workshop, VO2 max testing, and continuous coaching.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">10× PT Sessions</span><span class="pkg-hl">Wim Hof Workshop</span><span class="pkg-hl">VO2 Max</span><span class="pkg-hl">Photo-Video</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">7,797</span><span class="pkg-price-unit">CHF</span></div>
+          <p class="pkg-monthly">or 2,599 CHF × 3 months</p>
+          <button class="pkg-btn pkg-btn-outline" onclick="openModal('embody')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- LONGEVITY -->
+      <div class="pkg-card" data-tier="longevity">
+        <span class="pkg-badge duration">12 Months</span>
+        <div class="pkg-thumb"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=640&q=80" alt="Longevity Package" loading="lazy"></div>
+        <div class="pkg-info">
+          <span class="pkg-tier-name">Longevity</span>
+          <h3 class="pkg-title">Complete Realignment</h3>
+          <p class="pkg-tagline">The ultimate 12-month transformation — 50 PT sessions, community access, meals with Matthew, and everything the method offers.</p>
+          <div class="pkg-highlights"><span class="pkg-hl">50× PT Sessions</span><span class="pkg-hl">Community</span><span class="pkg-hl">Meal with Matthew</span><span class="pkg-hl">2× Photo-Video</span></div>
+          <div class="pkg-price-row"><span class="pkg-price">18,997</span><span class="pkg-price-unit">CHF</span></div>
+          <p class="pkg-monthly">or 1,583 CHF × 12 months</p>
+          <button class="pkg-btn pkg-btn-outline" onclick="openModal('longevity')">Book Now</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section class="about-section reveal">
+  <div class="container">
+    <div class="about-card">
+      <p class="section-label">Your Practitioner</p>
+      <h2 class="about-name">Matthew Hua</h2>
+      <p class="about-role">Transformation Therapist · Wim Hof Instructor · World-Class Bodyworker</p>
+      <p class="about-text">I designed this method so each element pulls a clear lever your nervous system understands. Six essentials — Hot/Cold, Breathwork, Mindset, Body, Movement, Community — woven into a weekly cadence you can live with, so progress accumulates quietly.</p>
+      <p class="about-text">You'll feel the shift: deeper sleep, steadier focus, reliable energy, your Inner Spark beginning to steer better choices in work and life.</p>
+      <div class="about-awards">
+        <span class="award-tag">🏅 Multi-Gold Award Winner</span>
+        <span class="award-tag">🏅 New Massage Association</span>
+        <span class="award-tag">🏅 Wim Hof Method Certified</span>
+        <span class="award-tag">🏅 International Championship Competitor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="site-footer">
+  <p class="footer-brand">healwell</p>
+  <p class="footer-legal">&copy; 2025 Healwell · Transformation Therapy Method™ by Matthew Hua · All rights reserved</p>
+</footer>
+
+</div><!-- /page-wrap -->
+
+<!-- ══════════════ MODAL ══════════════ -->
+<div id="pkgModal" class="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-card">
+    <button class="modal-close-x" onclick="closeModal()" aria-label="Close">&#x2715;</button>
+    <div class="modal-header">
+      <div class="modal-tier-row"><span class="modal-tier-name" id="mTierName"></span><span class="modal-tier-price" id="mTierPrice"></span></div>
+      <p class="modal-tagline" id="mTagline"></p>
+    </div>
+    <div class="modal-notice"><p>Review your full package scope &nbsp;·&nbsp; clicking &ldquo;I Agree&rdquo; confirms you understand what is included</p></div>
+    <div class="modal-scroll-wrap">
+      <div class="modal-body" id="mBody"></div>
+      <div class="modal-conditions">
+        <p class="cond-heading">Operating Conditions</p>
+        <div class="cond-grid">
+          <div class="cond-item"><span class="cond-title">Session Pacing</span><p>Matthew calibrates pacing based on your readiness. Elements may be adjusted in duration or intensity to match your current state.</p></div>
+          <div class="cond-item"><span class="cond-title">Health Disclaimer</span><p>Packages include therapeutic modalities. Participants should consult a physician before engaging in contrast therapy, breathwork, or physical training if they have pre-existing conditions.</p></div>
+          <div class="cond-item"><span class="cond-title">Creative Autonomy</span><p>All session design — sequencing, intensity, technique selection — is at Matthew's professional discretion to ensure optimal outcomes.</p></div>
+          <div class="cond-item"><span class="cond-title">Outcome Commitment</span><p>Your commitment to the process directly influences results. 100% Outcome Guarantee applies when the full protocol is followed as prescribed.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn-agree" id="mBtnAgree" onclick="modalAgree()">&#10003;&nbsp;&nbsp;I Agree &mdash; Proceed to Payment</button>
+      <button class="modal-btn-back" onclick="closeModal()">&#8592;&nbsp;&nbsp;Take Me Back to Packages</button>
+    </div>
+  </div>
+</div>
+
+<div class="sumup-tip">
+  <span class="tip-icon">💡</span>
+  <p>On the SumUp payment page, include your <strong>full name</strong> and <strong>package tier</strong> in the order notes so Matthew can identify your booking.</p>
+</div>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+/* ── Stardust ── */
+(function(){
+  var c=document.getElementById('stardust'), ctx=c.getContext('2d'), ps=[];
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  window.addEventListener('resize',resize); resize();
+  for(var i=0;i<50;i++) ps.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.6+0.4,dx:(Math.random()-0.5)*0.15,dy:(Math.random()-0.5)*0.15,aBase:Math.random()*0.45+0.3,phase:Math.random()*Math.PI*2,speed:0.02+Math.random()*0.035});
+  (function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ps.forEach(function(p){
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
+      if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
+      p.phase+=p.speed;
+      var breath=0.5+0.5*Math.sin(p.phase);
+      var a=p.aBase*0.05+p.aBase*0.95*breath;
+      var rNow=p.r*(0.5+0.5*breath);
+      ctx.save();
+      ctx.shadowBlur=rNow*7;ctx.shadowColor='rgba(45,212,191,'+a*0.7+')';
+      ctx.beginPath();ctx.arc(p.x,p.y,rNow,0,Math.PI*2);
+      ctx.fillStyle='rgba(45,212,191,'+a+')';ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ── Scroll Reveal ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+  els.forEach(function(el){obs.observe(el);});
+})();
+
+/* ── Package data ── */
+var PACKAGES = {
+  single: {
+    tier:'Single', price:'CHF 150 – 450', tagline:'A focused, targeted treatment session',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>Single targeted treatment (60–90 min)</li><li>InnerSpark Ignition session</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul>'
+  },
+  ignite: {
+    tier:'Ignite', price:'CHF 497', tagline:'Choose one element and feel the shift begin',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>Extended session (120–150 min)</li><li>Choose one: Breathwork &amp; Meditation, Contrast Therapy, or Mindset &amp; Autogenic Training</li><li>InnerSpark Ignition session</li><li>Cold Shower Protocol PDF</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul>'
+  },
+  immersion: {
+    tier:'Immersion', price:'CHF 1,397', tagline:'Half a day of full-spectrum integration',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>Half-day immersive experience</li><li>Ice Plunge Challenge &amp; Sauna</li><li>Breathwork &amp; Meditation</li><li>Contrast Therapy</li><li>Mindset &amp; Autogenic Training</li><li>Bodywork (therapeutic massage)</li><li>DEXA Body Scan × 1</li><li>Cold Shower Protocol PDF</li><li>Online coaching access</li><li>Follow-up &amp; integration session</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul>'
+  },
+  metamorphosis: {
+    tier:'Metamorphosis', price:'CHF 1,997', tagline:'A complete day of transformation — every element activated',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>Full-day transformation experience</li><li>All core elements × 6 sessions (90 min each) + full day</li><li>Personal Training × 1</li><li>Ice Plunge, Sauna &amp; Contrast Therapy</li><li>Breathwork &amp; Meditation</li><li>Mindset &amp; Autogenic Training</li><li>Bodywork</li><li>DEXA Scan + Fitness Assessment</li><li>High-End Photo &amp; Video (+CHF 799 optional)</li><li>Online coaching access</li><li>Follow-up &amp; integration session</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul>'
+  },
+  embody: {
+    tier:'Embody', price:'CHF 7,797', tagline:'Three months of deep, structured transformation',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>90-day transformation programme</li><li>Personal Training × 10 sessions</li><li>All core elements × 6 (90 min each) + full day</li><li>Wim Hof Method Workshop</li><li>DEXA Scan + Fitness Assessment + VO2 Max</li><li>High-End Photo &amp; Video × 1</li><li>Online coaching access</li><li>Follow-up &amp; integration</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul><h4>Payment</h4><ul><li>One-time: CHF 7,797</li><li>Monthly: CHF 2,599 × 3 months</li></ul>'
+  },
+  longevity: {
+    tier:'Longevity', price:'CHF 18,997', tagline:'The ultimate 12-month complete realignment',
+    payUrl:'#',
+    body:'<h4>What\'s Included</h4><ul><li>12-month comprehensive transformation</li><li>Personal Training × 50 sessions</li><li>Community &amp; Semi-PT Training access</li><li>All core elements × 12 (120 min each) + 2 full days</li><li>Meal with Matthew</li><li>Wim Hof Method Workshop</li><li>DEXA Scan × 4 + Fitness Assessment + VO2 Max</li><li>High-End Photo &amp; Video × 2</li><li>Online coaching access</li><li>Follow-up &amp; integration</li><li>Insurance advice</li><li>100% Outcome Guarantee</li></ul><h4>Payment</h4><ul><li>One-time: CHF 18,997</li><li>Monthly: CHF 1,583 × 12 months</li></ul>'
+  }
+};
+
+var _mPayUrl='#';
+
+function openModal(tier){
+  var d=PACKAGES[tier]; if(!d) return;
+  _mPayUrl=d.payUrl;
+  document.getElementById('mTierName').textContent=d.tier;
+  document.getElementById('mTierPrice').textContent=d.price;
+  document.getElementById('mTagline').textContent=d.tagline;
+  document.getElementById('mBody').innerHTML=d.body;
+  var modal=document.getElementById('pkgModal');
+  modal.classList.add('open'); document.body.style.overflow='hidden';
+  var sw=modal.querySelector('.modal-scroll-wrap'); if(sw) sw.scrollTop=0;
+  setTimeout(function(){document.querySelector('.sumup-tip').classList.add('visible');},600);
+}
+
+function closeModal(){
+  document.getElementById('pkgModal').classList.remove('open');
+  document.body.style.overflow='';
+  document.querySelector('.sumup-tip').classList.remove('visible');
+}
+
+function modalAgree(){ window.open(_mPayUrl,'_blank'); closeModal(); }
+
+function handleOverlayClick(e){ if(e.target===e.currentTarget) closeModal(); }
+
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>
