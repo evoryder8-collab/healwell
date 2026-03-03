@@ -90,7 +90,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   0%,100% { opacity:0.6; transform:translate(-50%,-50%) scale(1); }
   50% { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
 }
-.hero-portrait { position:relative; z-index:1; width:220px; height:auto; max-height:360px; object-fit:contain; filter:drop-shadow(0 0 40px rgba(45,212,191,0.25)) drop-shadow(0 0 70px rgba(45,212,191,0.1)); }
+.hero-portrait { position:relative; z-index:1; width:220px; height:auto; max-height:360px; object-fit:contain; mix-blend-mode:screen; filter:drop-shadow(0 0 40px rgba(45,212,191,0.25)) drop-shadow(0 0 70px rgba(45,212,191,0.1)); }
 
 .hero-brand { font-family:var(--font-display); font-size:clamp(42px,7vw,72px); font-weight:400; letter-spacing:3px; text-transform:lowercase; margin-bottom:8px; opacity:0; animation:heroFade 1s var(--ease) 0.5s forwards; }
 .hero-brand span { background:linear-gradient(135deg, var(--teal), #7DD3C0, var(--teal-dim)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
@@ -238,7 +238,17 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .award-tag:hover { background:rgba(200,169,81,0.08); border-color:rgba(200,169,81,0.3); transform:translateY(-2px); }
 
 /* ═══════ FOOTER ═══════ */
-.site-footer { padding:60px 24px 40px; text-align:center; border-top:1px solid var(--border-faint); }
+/* ── Social Section ── */
+.social-section { padding:64px 24px 56px; text-align:center; border-top:1px solid var(--border-faint); }
+.social-label { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--text-muted); margin-bottom:28px; }
+.social-icons { display:flex; justify-content:center; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:36px; }
+.social-icon { display:flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:50%; border:1px solid rgba(45,212,191,0.18); background:rgba(45,212,191,0.04); color:var(--text-muted); text-decoration:none; transition:border-color 0.3s ease, background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+.social-icon:hover { border-color:var(--teal); background:rgba(45,212,191,0.12); color:var(--teal); transform:translateY(-3px) scale(1.08); box-shadow:0 8px 24px rgba(45,212,191,0.2); }
+.social-icon svg { width:20px; height:20px; fill:currentColor; }
+.social-address { font-size:12px; color:var(--text-muted); font-weight:300; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.social-address svg { width:14px; height:14px; fill:var(--teal-dim); flex-shrink:0; }
+/* ── Footer ── */
+.site-footer { padding:28px 24px 40px; text-align:center; }
 .footer-brand { font-family:var(--font-display); font-size:22px; font-weight:400; letter-spacing:2px; color:var(--text-muted); margin-bottom:12px; }
 .footer-legal { font-size:11px; color:var(--text-muted); font-weight:300; }
 .footer-legal a { color:var(--teal-dim); text-decoration:none; }
@@ -279,12 +289,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .modal-btn-back { padding:10px; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; transition:color 0.3s ease; font-family:var(--font-body); }
 .modal-btn-back:hover { color:var(--text-secondary); }
 
-/* ═══════ SUMUP TIP ═══════ */
-.sumup-tip { position:fixed; bottom:0; left:0; right:0; z-index:9999; background:rgba(6,11,20,0.95); backdrop-filter:blur(16px); border-top:1px solid rgba(45,212,191,0.08); padding:14px 24px; display:flex; align-items:center; justify-content:center; gap:10px; transform:translateY(100%); transition:transform 0.5s var(--ease); }
-.sumup-tip.visible { transform:translateY(0); }
-.tip-icon { font-size:16px; }
-.sumup-tip p { font-size:12px; color:var(--text-muted); font-weight:300; }
-.sumup-tip strong { color:var(--teal); font-weight:600; }
 
 /* ═══════ CURSOR TRAIL ═══════ */
 .cursor-drop { position:fixed; pointer-events:none; z-index:9998; width:7px; height:7px; border-radius:50%; background:radial-gradient(circle, rgba(45,212,191,0.55), transparent); transform:translate(-50%,-50%); animation:dropFade 0.7s var(--ease) forwards; }
@@ -335,7 +339,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   <img src="images/logo-symbol.png" alt="Healwell" class="hero-logo-img">
 
   <div class="hero-portrait-wrap">
-    <img src="images/portrait.webp" alt="Matthew Hua" class="hero-portrait">
+    <img src="images/portrait.png" alt="Matthew Hua" class="hero-portrait">
   </div>
 
   <h1 class="hero-brand"><span>healwell</span></h1>
@@ -574,6 +578,41 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   </div>
 </section>
 
+<!-- ══════════════ SOCIAL ══════════════ -->
+<section class="social-section sr">
+  <p class="social-label">Follow me on</p>
+  <div class="social-icons">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/healwell.ch?igsh=MTZiaHF0bHppc293aw%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/17w8ncXDjW/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/matthewhua?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <!-- YouTube -->
+    <a href="https://youtube.com/@healwell.massage.pers.training?si=_QhFDCkJgJK9imCE" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <!-- Threads -->
+    <a href="https://www.threads.com/@healwell.ch?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-icon" aria-label="Threads">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068c0-3.583.891-6.498 2.65-8.666C5.941 1.287 8.644.049 12.214 0h.02c2.856.046 5.223.919 7.038 2.594 1.72 1.585 2.748 3.767 3.053 6.482l.011.103h-2.684l-.009-.084c-.248-1.991-.973-3.617-2.154-4.829-1.27-1.304-3.038-1.986-5.256-2.024-2.756.02-4.899.898-6.37 2.607-1.381 1.607-2.081 3.939-2.081 6.932s.7 5.326 2.081 6.932c1.471 1.709 3.615 2.587 6.37 2.607 2.037-.031 3.505-.526 4.614-1.56 1.19-1.107 1.826-2.726 1.892-4.813v-.096h-4.73l.001-.012v-2.433h7.406v.012c-.058 3.199-.975 5.693-2.725 7.414-1.638 1.612-3.893 2.421-6.704 2.443zM14.46 12c0-1.477-.617-2.562-1.78-3.139-.572-.283-1.249-.436-1.993-.436-.069 0-.133.003-.2.004v3.116c.047-.001.094-.002.141-.002.78 0 1.383.14 1.836.43.507.325.802.829.811 1.489.009.621-.237 1.126-.714 1.44-.462.306-1.121.452-2.002.436-.091-.002-.183-.007-.274-.012v2.383c.143.009.284.015.428.018.052.001.103.002.155.002 1.278 0 2.324-.27 3.109-.804.945-.638 1.483-1.65 1.483-2.925z"/></svg>
+    </a>
+    <!-- Google Maps -->
+    <a href="https://maps.google.com?q=healwell%20Massage%20Zurich%20Sihlcity%20%7C%20Krankenkasse%20Anerkannt%20%7C%20Transformation%20Therapy%20Method,%20R%C3%BCdigerstrasse%20Ground%20Floor,%20Z%C3%BCrich&ftid=0x47900922f0890019:0x1533fc255417adfe&entry=gps&shh=CAE&lucs=,94297699,100794548,94284469,94231188,94280568,47071704,94218641,94282134,94286869,100796589&g_st=ic" target="_blank" rel="noopener" class="social-icon" aria-label="Google Maps">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+    </a>
+  </div>
+  <p class="social-address">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
+    Rüdigerstrasse 7, 8045 Zürich, Switzerland
+  </p>
+</section>
+
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="site-footer">
   <p class="footer-brand">healwell</p>
@@ -590,7 +629,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
       <div class="modal-tier-row"><span class="modal-tier-name" id="mTierName"></span><span class="modal-tier-price" id="mTierPrice"></span></div>
       <p class="modal-tagline" id="mTagline"></p>
     </div>
-    <div class="modal-notice"><p>Review your full package scope &nbsp;·&nbsp; clicking &ldquo;I Agree&rdquo; confirms you understand what is included</p></div>
+    <div class="modal-notice"><p>Review your full package scope &nbsp;·&nbsp; tapping the button below opens WhatsApp to connect with Matthew directly</p></div>
     <div class="modal-scroll-wrap">
       <div class="modal-body" id="mBody"></div>
       <div class="modal-conditions">
@@ -604,16 +643,15 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
       </div>
     </div>
     <div class="modal-footer">
-      <button class="modal-btn-agree" id="mBtnAgree" onclick="modalAgree()">&#10003;&nbsp;&nbsp;I Agree &middot; Proceed to Payment</button>
+      <button class="modal-btn-agree" id="mBtnAgree" onclick="modalAgree()">
+        <svg style="width:16px;height:16px;fill:currentColor;vertical-align:middle;margin-right:8px;margin-top:-2px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book via WhatsApp
+      </button>
       <button class="modal-btn-back" onclick="closeModal()">&#8592;&nbsp;&nbsp;Take Me Back to Packages</button>
     </div>
   </div>
 </div>
 
-<div class="sumup-tip">
-  <span class="tip-icon">💡</span>
-  <p>On the SumUp payment page, include your <strong>full name</strong> and <strong>package tier</strong> in the order notes so Matthew can identify your booking.</p>
-</div>
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
@@ -1003,11 +1041,11 @@ var PACKAGES = {
   }
 };
 
-var _mPayUrl = '#';
+var _mTierName = '';
 
 function openModal(tier) {
   var d = PACKAGES[tier]; if (!d) return;
-  _mPayUrl = d.payUrl;
+  _mTierName = d.tier;
   document.getElementById('mTierName').textContent  = d.tier;
   document.getElementById('mTierPrice').textContent = d.price;
   document.getElementById('mTagline').textContent   = d.tagline;
@@ -1015,16 +1053,18 @@ function openModal(tier) {
   var modal = document.getElementById('pkgModal');
   modal.classList.add('open'); document.body.style.overflow = 'hidden';
   var sw = modal.querySelector('.modal-scroll-wrap'); if (sw) sw.scrollTop = 0;
-  setTimeout(function() { document.querySelector('.sumup-tip').classList.add('visible'); }, 600);
 }
 
 function closeModal() {
   document.getElementById('pkgModal').classList.remove('open');
   document.body.style.overflow = '';
-  document.querySelector('.sumup-tip').classList.remove('visible');
 }
 
-function modalAgree() { window.open(_mPayUrl, '_blank'); closeModal(); }
+function modalAgree() {
+  var msg = encodeURIComponent('Hi Matthew, I\u2019m interested in the ' + _mTierName + ' package. I\u2019d love to book a session!');
+  window.open('https://wa.me/41765067488?text=' + msg, '_blank');
+  closeModal();
+}
 
 function handleOverlayClick(e) { if (e.target === e.currentTarget) closeModal(); }
 
