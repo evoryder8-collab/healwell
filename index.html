@@ -49,8 +49,28 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .bg-ambient::after { content:''; position:absolute; bottom:-20%; left:-15%; width:600px; height:600px; background:radial-gradient(circle, rgba(100,80,200,0.03) 0%, transparent 70%); animation:floatOrb 30s ease-in-out infinite reverse; }
 @keyframes floatOrb { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(60px,-40px) scale(1.1)} 66%{transform:translate(-30px,50px) scale(0.95)} }
 
+/* ═══════ AMBIENT FLOAT ORBS ═══════ */
+.float-orb { position:fixed; pointer-events:none; z-index:0; border-radius:50%; filter:blur(80px); }
+.float-orb-1 { width:380px; height:380px; background:radial-gradient(circle, rgba(45,212,191,0.06), transparent 70%); top:12%; left:3%; animation:orbDrift1 22s ease-in-out infinite; }
+.float-orb-2 { width:280px; height:280px; background:radial-gradient(circle, rgba(120,90,220,0.05), transparent 70%); bottom:18%; right:5%; animation:orbDrift2 28s ease-in-out infinite; }
+.float-orb-3 { width:200px; height:200px; background:radial-gradient(circle, rgba(200,169,81,0.04), transparent 70%); top:52%; left:48%; animation:orbDrift3 19s ease-in-out infinite; }
+@keyframes orbDrift1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(50px,-70px)} 66%{transform:translate(-35px,45px)} }
+@keyframes orbDrift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-55px,35px)} }
+@keyframes orbDrift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(35px,-50px) scale(1.25)} }
+
 /* ═══════ STARDUST CANVAS ═══════ */
 #stardust { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* ═══════ SCROLL PROGRESS INDICATOR ═══════ */
+.scroll-progress { position:fixed; right:14px; top:50%; transform:translateY(-50%); width:3px; height:130px; border-radius:3px; background:rgba(255,255,255,0.04); z-index:200; }
+.scroll-progress-fill { width:100%; border-radius:3px; background:linear-gradient(to bottom, rgba(45,212,191,0.4), var(--teal)); position:relative; transition:height 0.15s linear; }
+.scroll-progress-dot { width:10px; height:10px; border-radius:50%; background:var(--teal); position:absolute; bottom:-5px; left:50%; transform:translateX(-50%); box-shadow:0 0 12px var(--teal), 0 0 24px rgba(45,212,191,0.5); animation:dotBreath 2.5s ease-in-out infinite; }
+@keyframes dotBreath { 0%,100%{box-shadow:0 0 10px var(--teal),0 0 20px rgba(45,212,191,0.4)} 50%{box-shadow:0 0 18px var(--teal),0 0 36px rgba(45,212,191,0.7)} }
+@media(max-width:600px) { .scroll-progress { right:7px; } }
+
+/* ═══════ GLOBAL BREATH PULSE ═══════ */
+.g-pulse { position:fixed; top:50%; left:50%; z-index:0; pointer-events:none; border-radius:50%; background:radial-gradient(circle, rgba(45,212,191,0.04), transparent 60%); transform:translate(-50%,-50%) scale(0); animation:gPulse 3.5s var(--ease) forwards; }
+@keyframes gPulse { 0%{transform:translate(-50%,-50%) scale(0);opacity:0.6} 100%{transform:translate(-50%,-50%) scale(6);opacity:0} }
 
 /* ═══════ LAYOUT ═══════ */
 .page-wrap { position:relative; z-index:1; }
@@ -98,8 +118,25 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 
 /* ═══════ SECTION TITLES ═══════ */
 .section-label { font-size:9px; font-weight:600; letter-spacing:5px; text-transform:uppercase; color:var(--teal-dim); text-align:center; margin-bottom:14px; }
-.section-title { font-family:var(--font-display); font-size:clamp(26px,3.8vw,40px); font-weight:400; text-align:center; margin-bottom:16px; color:var(--cream); }
+.section-title { font-family:var(--font-display); font-size:clamp(26px,3.8vw,40px); font-weight:400; text-align:center; margin-bottom:16px; color:var(--cream); position:relative; overflow:hidden; }
+.section-title::after { content:''; position:absolute; top:0; left:-100%; width:55%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transform:skewX(-18deg); pointer-events:none; }
+.section-title.shimmer::after { animation:titleShimmer 1.4s var(--ease) forwards; }
+@keyframes titleShimmer { 0%{left:-100%} 100%{left:160%} }
 .section-subtitle { font-size:14px; color:var(--text-muted); text-align:center; max-width:580px; margin:0 auto 50px; font-weight:300; line-height:1.8; }
+
+/* ═══════ STAGGER SCROLL REVEAL ═══════ */
+.sr { opacity:0; transform:translateY(28px); transition:opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+.sr.in { opacity:1; transform:none; }
+
+/* ═══════ BREATH SEPARATOR ═══════ */
+.breath-sep { display:flex; justify-content:center; align-items:center; gap:16px; padding:24px 0; }
+.breath-dot { width:5px; height:5px; border-radius:50%; background:rgba(45,212,191,0.22); opacity:0; transform:scale(0); transition:opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.breath-sep.in .breath-dot:nth-child(1) { opacity:1; transform:scale(1); transition-delay:0s; animation:bdot 3.8s ease-in-out 0.6s infinite; }
+.breath-sep.in .breath-dot:nth-child(2) { opacity:1; transform:scale(1); transition-delay:0.12s; animation:bdot 3.8s ease-in-out 1s infinite; }
+.breath-sep.in .breath-dot:nth-child(3) { opacity:1; transform:scale(1); transition-delay:0.24s; animation:bdot 3.8s ease-in-out 1.4s infinite; }
+.breath-sep.in .breath-dot:nth-child(4) { opacity:1; transform:scale(1); transition-delay:0.36s; animation:bdot 3.8s ease-in-out 1.8s infinite; }
+.breath-sep.in .breath-dot:nth-child(5) { opacity:1; transform:scale(1); transition-delay:0.48s; animation:bdot 3.8s ease-in-out 2.2s infinite; }
+@keyframes bdot { 0%,100%{opacity:0.22;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.5);box-shadow:0 0 8px rgba(45,212,191,0.4)} }
 
 /* ═══════ METHOD PILLARS ═══════ */
 .pillars-section { padding:100px 0 80px; }
@@ -107,16 +144,23 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 @media(max-width:768px) { .pillars-grid { grid-template-columns:repeat(2, 1fr); } }
 @media(max-width:480px) { .pillars-grid { grid-template-columns:1fr; } }
 
-.pillar { padding:32px 24px; border-radius:18px; background:rgba(11,17,32,0.6); border:1px solid var(--border-faint); text-align:center; transition:all 0.5s var(--ease); position:relative; overflow:hidden; }
-.pillar:hover { border-color:rgba(45,212,191,0.15); transform:translateY(-4px); background:rgba(11,17,32,0.8); }
-.pillar-icon { font-size:32px; margin-bottom:16px; display:block; }
+.pillar { padding:32px 24px; border-radius:18px; background:rgba(11,17,32,0.6); border:1px solid var(--border-faint); text-align:center; transition:all 0.5s var(--ease), box-shadow 0.5s var(--ease); position:relative; overflow:hidden; }
+.pillar:hover { border-color:rgba(45,212,191,0.18); transform:translateY(-5px); background:rgba(11,17,32,0.85); box-shadow:0 16px 48px rgba(45,212,191,0.07); }
+.pillar::after { content:''; position:absolute; inset:0; border-radius:18px; background:radial-gradient(circle at 50% 0%, rgba(45,212,191,0.04), transparent 60%); opacity:0; transition:opacity 0.5s var(--ease); }
+.pillar:hover::after { opacity:1; }
+.pillar-icon { font-size:32px; margin-bottom:16px; display:block; filter:drop-shadow(0 0 12px rgba(45,212,191,0.2)); }
 .pillar-name { font-family:var(--font-display); font-size:20px; font-weight:400; margin-bottom:10px; color:var(--cream); }
 .pillar-desc { font-size:12px; color:var(--text-muted); font-weight:300; line-height:1.7; }
 
 /* ═══════ INNERSPARK BANNER ═══════ */
 .innerspark { padding:60px 0; }
-.innerspark-card { max-width:800px; margin:0 auto; padding:48px 40px; border-radius:22px; background:linear-gradient(135deg, rgba(45,212,191,0.06), rgba(100,80,200,0.04)); border:1px solid rgba(45,212,191,0.1); text-align:center; position:relative; overflow:hidden; }
+.innerspark-card { max-width:800px; margin:0 auto; padding:48px 40px; border-radius:22px; background:linear-gradient(135deg, rgba(45,212,191,0.06), rgba(100,80,200,0.04)); border:1px solid rgba(45,212,191,0.1); text-align:center; position:relative; overflow:visible; }
 .innerspark-card::before { content:'✦'; position:absolute; top:20px; right:28px; font-size:20px; color:var(--teal); opacity:0.3; }
+
+/* InnerSpark ripple rings */
+.innerspark-ring { position:absolute; top:50%; left:50%; width:100px; height:100px; border:1px solid rgba(45,212,191,0.35); border-radius:50%; transform:translate(-50%,-50%) scale(0.4); pointer-events:none; animation:rippleOut 2.6s var(--ease) forwards; }
+@keyframes rippleOut { 0%{transform:translate(-50%,-50%) scale(0.4);opacity:0.7} 100%{transform:translate(-50%,-50%) scale(6);opacity:0} }
+
 .innerspark-label { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
 .innerspark-title { font-family:var(--font-display); font-size:24px; font-weight:300; margin-bottom:14px; }
 .innerspark-desc { font-size:13px; color:var(--text-muted); font-weight:300; line-height:1.8; max-width:560px; margin:0 auto; }
@@ -131,6 +175,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 /* ═══════ PACKAGE CARDS ═══════ */
 .pkg-card { border-radius:22px; overflow:hidden; display:flex; flex-direction:column; transition:all 0.6s var(--ease); position:relative; background:var(--bg-card); border:1px solid rgba(255,255,255,0.07); box-shadow:0 4px 30px rgba(0,0,0,0.3); }
 .pkg-card:hover { transform:translateY(-6px); border-color:rgba(45,212,191,0.15); box-shadow:0 12px 50px rgba(0,0,0,0.4); }
+.pkg-card.tilting { transition:transform 0.08s ease !important; }
 
 /* Tier accent colors */
 .pkg-card[data-tier="single"] { border-color:rgba(200,169,81,0.12); }
@@ -176,11 +221,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .pkg-features-link .arrow { font-size:9px; display:inline-block; transition:transform 0.3s var(--ease); }
 .pkg-features-link:hover .arrow { transform:translate(2px,-2px); }
 
-.pkg-features-link { background:none; border:none; padding:0; margin:10px 0 0; font-family:var(--font-body); font-size:10px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:color 0.3s var(--ease); }
-.pkg-features-link:hover { color:var(--teal); }
-.pkg-features-link .arrow { font-size:9px; display:inline-block; transition:transform 0.3s var(--ease); }
-.pkg-features-link:hover .arrow { transform:translate(2px,-2px); }
-
 .pkg-btn { display:block; width:100%; padding:14px; border-radius:12px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; text-align:center; border:none; cursor:pointer; transition:all 0.4s var(--ease); font-family:var(--font-body); }
 .pkg-btn-primary { background:linear-gradient(135deg, var(--teal-dim), var(--teal)); color:var(--bg-deep); }
 .pkg-btn-primary:hover { box-shadow:0 8px 32px rgba(45,212,191,0.3); }
@@ -194,7 +234,8 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .about-role { font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--teal-dim); margin-bottom:24px; }
 .about-text { font-size:14px; color:var(--text-muted); font-weight:300; line-height:1.9; max-width:640px; margin:0 auto 28px; }
 .about-awards { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:28px; }
-.award-tag { font-size:10px; font-weight:500; letter-spacing:1px; color:var(--gold); padding:8px 18px; border-radius:50px; border:1px solid rgba(200,169,81,0.15); background:rgba(200,169,81,0.04); }
+.award-tag { font-size:10px; font-weight:500; letter-spacing:1px; color:var(--gold); padding:8px 18px; border-radius:50px; border:1px solid rgba(200,169,81,0.15); background:rgba(200,169,81,0.04); transition:all 0.4s var(--ease); }
+.award-tag:hover { background:rgba(200,169,81,0.08); border-color:rgba(200,169,81,0.3); transform:translateY(-2px); }
 
 /* ═══════ FOOTER ═══════ */
 .site-footer { padding:60px 24px 40px; text-align:center; border-top:1px solid var(--border-faint); }
@@ -245,12 +286,16 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 .sumup-tip p { font-size:12px; color:var(--text-muted); font-weight:300; }
 .sumup-tip strong { color:var(--teal); font-weight:600; }
 
+/* ═══════ CURSOR TRAIL ═══════ */
+.cursor-drop { position:fixed; pointer-events:none; z-index:9998; width:7px; height:7px; border-radius:50%; background:radial-gradient(circle, rgba(45,212,191,0.55), transparent); transform:translate(-50%,-50%); animation:dropFade 0.7s var(--ease) forwards; }
+@keyframes dropFade { 0%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-50%) scale(0.15)} }
+
 /* ═══════ RESPONSIVE ═══════ */
 @media(max-width:768px) {
   .hero { padding:60px 20px 130px; }
   .hero-credentials { gap:16px; }
   .modal-card { max-height:92vh; }
-  .packages-grid { gap:16px; }
+  .packages-grid { gap:32px; }
   .hero-portrait { width:175px; max-height:260px; }
   .hero-logo-img { width:144px; }
   .hero-portrait-wrap::before { width:220px; height:220px; }
@@ -261,7 +306,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   .hero-portrait-wrap::before { width:340px; height:340px; }
 }
 
-/* ═══════ REVEAL ANIMATION ═══════ */
+/* ═══════ REVEAL (legacy fallback) ═══════ */
 .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .reveal.visible { opacity:1; transform:translateY(0); }
 </style>
@@ -271,14 +316,24 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 <div class="bg-ambient"></div>
 <canvas id="stardust"></canvas>
 
+<!-- Ambient float orbs -->
+<div class="float-orb float-orb-1"></div>
+<div class="float-orb float-orb-2"></div>
+<div class="float-orb float-orb-3"></div>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress">
+  <div class="scroll-progress-fill" id="scrollFill" style="height:0%">
+    <div class="scroll-progress-dot"></div>
+  </div>
+</div>
+
 <div class="page-wrap">
 
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
-  <!-- Logo image -->
   <img src="images/logo-symbol.png" alt="Healwell" class="hero-logo-img">
 
-  <!-- Portrait -->
   <div class="hero-portrait-wrap">
     <img src="images/portrait.webp" alt="Matthew Hua" class="hero-portrait">
   </div>
@@ -304,8 +359,17 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   </div>
 </section>
 
+<!-- breath separator -->
+<div class="breath-sep" id="bsep1">
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+</div>
+
 <!-- ══════════════ METHOD PILLARS ══════════════ -->
-<section class="pillars-section reveal">
+<section class="pillars-section">
   <div class="container">
     <p class="section-label">The Six Elements</p>
     <h2 class="section-title">Every lever your nervous system needs</h2>
@@ -346,8 +410,17 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   </div>
 </section>
 
+<!-- breath separator -->
+<div class="breath-sep" id="bsep2">
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+</div>
+
 <!-- ══════════════ INNERSPARK ══════════════ -->
-<section class="innerspark reveal">
+<section class="innerspark">
   <div class="container">
     <div class="innerspark-card">
       <p class="innerspark-label">✦ InnerSpark</p>
@@ -358,8 +431,17 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   </div>
 </section>
 
+<!-- breath separator -->
+<div class="breath-sep" id="bsep3">
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+</div>
+
 <!-- ══════════════ PACKAGES ══════════════ -->
-<section id="packages" class="packages-section reveal">
+<section id="packages" class="packages-section">
   <div class="container">
     <p class="section-label">Choose Your Path</p>
     <h2 class="section-title">Transformation Packages</h2>
@@ -381,7 +463,8 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
           <p class="pkg-monthly">or 1,583 CHF × 12 months</p>
           <button class="pkg-btn pkg-btn-outline" onclick="openModal('longevity')">Book Now</button>
         </div>
-      
+      </div>
+
 <!-- EMBODY -->
       <div class="pkg-card" data-tier="embody">
         <span class="pkg-badge duration">90 Days</span>
@@ -398,7 +481,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
         </div>
       </div>
 
-      
 <!-- METAMORPHOSIS (FEATURED) -->
       <div class="pkg-card" data-tier="metamorphosis">
         <span class="featured-ribbon">Most Popular</span>
@@ -415,7 +497,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
         </div>
       </div>
 
-      
 <!-- IMMERSION -->
       <div class="pkg-card" data-tier="immersion">
         <span class="pkg-badge duration">Half Day</span>
@@ -431,7 +512,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
         </div>
       </div>
 
-      
 <!-- IGNITE -->
       <div class="pkg-card" data-tier="ignite">
         <span class="pkg-badge duration">120 to 150 min</span>
@@ -447,7 +527,6 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
         </div>
       </div>
 
-      
 <!-- SINGLE -->
       <div class="pkg-card" data-tier="single">
         <span class="pkg-badge duration">60 to 90 min</span>
@@ -463,15 +542,21 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
         </div>
       </div>
 
-      
-    </div></div>
-
     </div>
   </div>
 </section>
 
+<!-- breath separator -->
+<div class="breath-sep" id="bsep4">
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+  <div class="breath-dot"></div>
+</div>
+
 <!-- ══════════════ ABOUT ══════════════ -->
-<section class="about-section reveal">
+<section class="about-section">
   <div class="container">
     <div class="about-card">
       <p class="section-label">Your Practitioner</p>
@@ -492,7 +577,7 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="site-footer">
   <p class="footer-brand">healwell</p>
-  <p class="footer-legal">&copy; 2025 Healwell · Transformation Therapy Method™ by Matthew Hua · All rights reserved</p>
+  <p class="footer-legal">&copy; 2026 Healwell · Transformation Therapy Method™ by Matthew Hua · All rights reserved</p>
 </footer>
 
 </div><!-- /page-wrap -->
@@ -532,40 +617,359 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
-/* ── Enhanced Breathing Stardust ── */
+/* ══════════════════════════════════════════════════
+   HEALWELL · Scroll Animation Engine
+   ══════════════════════════════════════════════════ */
+
+/* ── 1. Enhanced Neural Stardust Canvas ── */
 (function(){
-  var c=document.getElementById('stardust'), ctx=c.getContext('2d'), ps=[];
-  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
-  window.addEventListener('resize',resize); resize();
-  for(var i=0;i<60;i++) ps.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.8+0.3,dx:(Math.random()-0.5)*0.12,dy:(Math.random()-0.5)*0.12,aBase:Math.random()*0.5+0.25,phase:Math.random()*Math.PI*2,speed:0.015+Math.random()*0.03});
-  (function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    ps.forEach(function(p){
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
-      if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
-      p.phase+=p.speed;
-      var breath=0.5+0.5*Math.sin(p.phase);
-      var a=p.aBase*0.05+p.aBase*0.95*breath;
-      var rNow=p.r*(0.4+0.6*breath);
+  var c = document.getElementById('stardust');
+  var ctx = c.getContext('2d');
+  var ps = [];
+  var mx = -999, my = -999;
+  var scrollVel = 0, lastSY = 0;
+  var W, H;
+
+  function resize() {
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  window.addEventListener('scroll', function() {
+    var sy = window.pageYOffset;
+    scrollVel = Math.min(Math.abs(sy - lastSY) * 0.012, 1.4);
+    lastSY = sy;
+  });
+
+  window.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('touchmove', function(e) {
+    if (e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
+  }, {passive:true});
+
+  /* build particles: 88 total, ~11 gold */
+  for (var i = 0; i < 88; i++) {
+    var isGold = i < 10;
+    ps.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.7 + (isGold ? 0.6 : 0.3),
+      dx: (Math.random() - 0.5) * 0.14,
+      dy: (Math.random() - 0.5) * 0.14,
+      aBase: Math.random() * 0.45 + (isGold ? 0.3 : 0.2),
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.013 + Math.random() * 0.028,
+      gold: isGold
+    });
+  }
+
+  var CONNECT_DIST = 88;
+  var ATTRACT_DIST = 170;
+
+  (function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* neural connections */
+    for (var i = 0; i < ps.length; i++) {
+      for (var j = i + 1; j < ps.length; j++) {
+        var dx = ps[i].x - ps[j].x, dy = ps[i].y - ps[j].y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          var lineAlpha = (1 - dist / CONNECT_DIST) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(ps[i].x, ps[i].y);
+          ctx.lineTo(ps[j].x, ps[j].y);
+          ctx.strokeStyle = 'rgba(45,212,191,' + lineAlpha + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* particles */
+    ps.forEach(function(p) {
+      /* cursor attraction */
+      if (mx > 0) {
+        var ex = mx - p.x, ey = my - p.y;
+        var ed = Math.sqrt(ex*ex + ey*ey);
+        if (ed < ATTRACT_DIST) {
+          var pull = (1 - ed / ATTRACT_DIST) * 0.018;
+          p.x += ex * pull;
+          p.y += ey * pull;
+        }
+      }
+
+      /* movement + scroll velocity boost */
+      var sv = 1 + scrollVel;
+      p.x += p.dx * sv;
+      p.y += p.dy * sv;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+
+      /* breathing */
+      p.phase += p.speed;
+      var breath = 0.5 + 0.5 * Math.sin(p.phase);
+      var a = p.aBase * 0.05 + p.aBase * 0.95 * breath;
+      var rNow = p.r * (0.4 + 0.6 * breath);
+
       ctx.save();
-      ctx.shadowBlur=rNow*8;ctx.shadowColor='rgba(45,212,191,'+a*0.8+')';
-      ctx.beginPath();ctx.arc(p.x,p.y,rNow,0,Math.PI*2);
-      ctx.fillStyle='rgba(45,212,191,'+a+')';ctx.fill();
+      if (p.gold) {
+        ctx.shadowBlur = rNow * 9;
+        ctx.shadowColor = 'rgba(200,169,81,' + a * 0.7 + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, rNow, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(200,169,81,' + a + ')'; ctx.fill();
+      } else {
+        ctx.shadowBlur = rNow * 8;
+        ctx.shadowColor = 'rgba(45,212,191,' + a * 0.8 + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, rNow, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(45,212,191,' + a + ')'; ctx.fill();
+      }
       ctx.restore();
     });
+
+    /* decay scroll velocity */
+    scrollVel *= 0.92;
     requestAnimationFrame(draw);
   })();
 })();
 
-/* ── Scroll Reveal ── */
+
+/* ── 2. Scroll Progress Fill ── */
 (function(){
-  var els=document.querySelectorAll('.reveal');
-  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
-  els.forEach(function(el){obs.observe(el);});
+  var fill = document.getElementById('scrollFill');
+  function update() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(window.pageYOffset / max * 100, 100) : 0;
+    fill.style.height = pct + '%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
 })();
 
-/* ── Package data ── */
+
+/* ── 3. Hero Parallax (fires after CSS animations complete) ── */
+(function(){
+  var enabled = false;
+  var logo    = document.querySelector('.hero-logo-img');
+  var port    = document.querySelector('.hero-portrait-wrap');
+  var brand   = document.querySelector('.hero-brand');
+  var tagline = document.querySelector('.hero-tagline');
+  var cta     = document.querySelector('.hero-cta');
+  var creds   = document.querySelector('.hero-credentials');
+
+  setTimeout(function() { enabled = true; }, 2350);
+
+  var rAFPending = false;
+  window.addEventListener('scroll', function() {
+    if (!enabled || rAFPending) return;
+    rAFPending = true;
+    requestAnimationFrame(function() {
+      rAFPending = false;
+      var sy = window.pageYOffset;
+      if (logo)    logo.style.transform    = 'translateY(' + (sy * 0.10) + 'px)';
+      if (port)    port.style.transform    = 'translateY(' + (sy * 0.05) + 'px)';
+      if (brand)   brand.style.transform   = 'translateY(' + (sy * 0.14) + 'px)';
+      if (tagline) tagline.style.transform = 'translateY(' + (sy * 0.22) + 'px)';
+      if (cta)     cta.style.transform     = 'translateY(' + (sy * 0.26) + 'px)';
+      if (creds)   creds.style.transform   = 'translateY(' + (sy * 0.30) + 'px)';
+    });
+  }, {passive:true});
+})();
+
+
+/* ── 4. Staggered Scroll Reveals ── */
+(function(){
+  /* mark elements with .sr and set stagger delay */
+  function markSR(selector, baseDelay) {
+    var els = document.querySelectorAll(selector);
+    els.forEach(function(el, i) {
+      el.classList.add('sr');
+      el.style.transitionDelay = ((baseDelay || 0) + i * 0.1) + 's';
+    });
+    return els;
+  }
+
+  /* section text headers */
+  document.querySelectorAll('.section-label').forEach(function(el) {
+    el.classList.add('sr'); el.style.transitionDelay = '0s';
+  });
+  document.querySelectorAll('.section-title').forEach(function(el) {
+    el.classList.add('sr'); el.style.transitionDelay = '0.08s';
+  });
+  document.querySelectorAll('.section-subtitle').forEach(function(el) {
+    el.classList.add('sr'); el.style.transitionDelay = '0.18s';
+  });
+
+  /* pillars stagger */
+  document.querySelectorAll('.pillar').forEach(function(el, i) {
+    el.classList.add('sr');
+    el.style.transitionDelay = (0.06 + i * 0.09) + 's';
+  });
+
+  /* pkg cards stagger */
+  document.querySelectorAll('.pkg-card').forEach(function(el, i) {
+    el.classList.add('sr');
+    el.style.transitionDelay = (0.04 + i * 0.08) + 's';
+  });
+
+  /* innerspark card */
+  var isc = document.querySelector('.innerspark-card');
+  if (isc) { isc.classList.add('sr'); isc.style.transitionDelay = '0.05s'; }
+
+  /* about elements */
+  var aboutEls = ['.about-card .section-label','.about-name','.about-role','.about-text','.award-tag'];
+  var aDelay = 0;
+  aboutEls.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el, i) {
+      el.classList.add('sr');
+      el.style.transitionDelay = (aDelay + i * 0.1) + 's';
+    });
+    aDelay += 0.1;
+  });
+
+  /* observer */
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.sr').forEach(function(el) { obs.observe(el); });
+})();
+
+
+/* ── 5. InnerSpark Ripple Rings ── */
+(function(){
+  var card = document.querySelector('.innerspark-card');
+  if (!card) return;
+  var fired = false;
+
+  new IntersectionObserver(function(entries) {
+    if (fired || !entries[0].isIntersecting) return;
+    fired = true;
+
+    /* fire 3 rings with stagger */
+    [0, 500, 1000].forEach(function(delay, i) {
+      setTimeout(function() {
+        var ring = document.createElement('div');
+        ring.className = 'innerspark-ring';
+        card.appendChild(ring);
+        /* remove after animation */
+        setTimeout(function() { ring.remove(); }, 2800);
+      }, delay);
+    });
+  }, { threshold: 0.4 }).observe(card);
+})();
+
+
+/* ── 6. Section Title Shimmer on Reveal ── */
+(function(){
+  var titles = document.querySelectorAll('.section-title');
+  titles.forEach(function(el) {
+    new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        setTimeout(function() { el.classList.add('shimmer'); }, 450);
+      }
+    }, { threshold: 0.5 }).observe(el);
+  });
+})();
+
+
+/* ── 7. 3D Card Tilt (fine pointer / desktop only) ── */
+(function(){
+  if (!window.matchMedia('(pointer:fine)').matches) return;
+
+  document.querySelectorAll('.pkg-card').forEach(function(card) {
+    var rafId = null;
+
+    card.addEventListener('mouseenter', function() {
+      card.classList.add('tilting');
+    });
+
+    card.addEventListener('mousemove', function(e) {
+      if (rafId) return;
+      rafId = requestAnimationFrame(function() {
+        rafId = null;
+        var r = card.getBoundingClientRect();
+        var cx = r.left + r.width / 2;
+        var cy = r.top  + r.height / 2;
+        var rx = ((e.clientY - cy) / (r.height / 2)) * -7;
+        var ry = ((e.clientX - cx) / (r.width  / 2)) *  7;
+        card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px)';
+      });
+    });
+
+    card.addEventListener('mouseleave', function() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      card.classList.remove('tilting');
+      card.style.transform = '';
+    });
+  });
+})();
+
+
+/* ── 8. Cursor Trail (fine pointer / desktop only) ── */
+(function(){
+  if (!window.matchMedia('(pointer:fine)').matches) return;
+
+  var lastTrail = 0;
+  var THROTTLE = 85;
+
+  window.addEventListener('pointermove', function(e) {
+    var now = Date.now();
+    if (now - lastTrail < THROTTLE) return;
+    lastTrail = now;
+
+    var drop = document.createElement('div');
+    drop.className = 'cursor-drop';
+    drop.style.left = e.clientX + 'px';
+    drop.style.top  = e.clientY + 'px';
+    document.body.appendChild(drop);
+    setTimeout(function() { drop.remove(); }, 750);
+  });
+})();
+
+
+/* ── 9. Breath Separators Observer ── */
+(function(){
+  var seps = document.querySelectorAll('.breath-sep');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  seps.forEach(function(s) { obs.observe(s); });
+})();
+
+
+/* ── 10. Global Breath Pulse (periodic) ── */
+(function(){
+  function pulse() {
+    var div = document.createElement('div');
+    div.className = 'g-pulse';
+    div.style.width  = '300px';
+    div.style.height = '300px';
+    document.body.appendChild(div);
+    setTimeout(function() { div.remove(); }, 3600);
+  }
+  /* first pulse after 5s, then every 9s */
+  setTimeout(function() {
+    pulse();
+    setInterval(pulse, 9000);
+  }, 5000);
+})();
+
+
+/* ══════════════════════════════════════════════════
+   PACKAGE DATA + MODAL
+   ══════════════════════════════════════════════════ */
+
 var PACKAGES = {
   single: {
     tier:'Single', price:'CHF 150 to 450', tagline:'A focused, targeted treatment session',
@@ -599,32 +1003,32 @@ var PACKAGES = {
   }
 };
 
-var _mPayUrl='#';
+var _mPayUrl = '#';
 
-function openModal(tier){
-  var d=PACKAGES[tier]; if(!d) return;
-  _mPayUrl=d.payUrl;
-  document.getElementById('mTierName').textContent=d.tier;
-  document.getElementById('mTierPrice').textContent=d.price;
-  document.getElementById('mTagline').textContent=d.tagline;
-  document.getElementById('mBody').innerHTML=d.body;
-  var modal=document.getElementById('pkgModal');
-  modal.classList.add('open'); document.body.style.overflow='hidden';
-  var sw=modal.querySelector('.modal-scroll-wrap'); if(sw) sw.scrollTop=0;
-  setTimeout(function(){document.querySelector('.sumup-tip').classList.add('visible');},600);
+function openModal(tier) {
+  var d = PACKAGES[tier]; if (!d) return;
+  _mPayUrl = d.payUrl;
+  document.getElementById('mTierName').textContent  = d.tier;
+  document.getElementById('mTierPrice').textContent = d.price;
+  document.getElementById('mTagline').textContent   = d.tagline;
+  document.getElementById('mBody').innerHTML        = d.body;
+  var modal = document.getElementById('pkgModal');
+  modal.classList.add('open'); document.body.style.overflow = 'hidden';
+  var sw = modal.querySelector('.modal-scroll-wrap'); if (sw) sw.scrollTop = 0;
+  setTimeout(function() { document.querySelector('.sumup-tip').classList.add('visible'); }, 600);
 }
 
-function closeModal(){
+function closeModal() {
   document.getElementById('pkgModal').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
   document.querySelector('.sumup-tip').classList.remove('visible');
 }
 
-function modalAgree(){ window.open(_mPayUrl,'_blank'); closeModal(); }
+function modalAgree() { window.open(_mPayUrl, '_blank'); closeModal(); }
 
-function handleOverlayClick(e){ if(e.target===e.currentTarget) closeModal(); }
+function handleOverlayClick(e) { if (e.target === e.currentTarget) closeModal(); }
 
-document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
