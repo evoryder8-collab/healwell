@@ -84,13 +84,13 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
 
 /* Portrait section */
 .hero-portrait-wrap { position:relative; margin-bottom:28px; opacity:0; animation:heroFade 1.2s var(--ease) 0.3s forwards; display:flex; justify-content:center; align-items:center; }
-.hero-portrait-wrap::before { content:''; position:absolute; top:50%; left:50%; width:280px; height:280px; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(45,212,191,0.12) 0%, rgba(100,80,200,0.06) 40%, transparent 70%); border-radius:50%; animation:portraitGlow 4s ease-in-out infinite; pointer-events:none; }
-.hero-portrait-wrap::after { content:''; position:absolute; top:50%; left:50%; width:200px; height:200px; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(45,212,191,0.08) 0%, transparent 60%); border-radius:50%; animation:portraitGlow 4s ease-in-out infinite 2s; pointer-events:none; }
+.hero-portrait-wrap::before { content:''; position:absolute; top:50%; left:50%; width:392px; height:392px; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(45,212,191,0.12) 0%, rgba(100,80,200,0.06) 40%, transparent 70%); border-radius:50%; animation:portraitGlow 4s ease-in-out infinite; pointer-events:none; }
+.hero-portrait-wrap::after { content:''; position:absolute; top:50%; left:50%; width:280px; height:280px; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(45,212,191,0.08) 0%, transparent 60%); border-radius:50%; animation:portraitGlow 4s ease-in-out infinite 2s; pointer-events:none; }
 @keyframes portraitGlow {
   0%,100% { opacity:0.6; transform:translate(-50%,-50%) scale(1); }
   50% { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
 }
-.hero-portrait { position:relative; z-index:1; width:220px; height:auto; max-height:360px; object-fit:contain; filter:drop-shadow(0 0 40px rgba(45,212,191,0.25)) drop-shadow(0 0 70px rgba(45,212,191,0.1)); }
+.hero-portrait { position:relative; z-index:1; width:308px; height:auto; max-height:504px; object-fit:contain; filter:drop-shadow(0 0 40px rgba(45,212,191,0.25)) drop-shadow(0 0 70px rgba(45,212,191,0.1)); }
 
 .hero-brand { font-family:var(--font-display); font-size:clamp(42px,7vw,72px); font-weight:400; letter-spacing:3px; text-transform:lowercase; margin-bottom:8px; opacity:0; animation:heroFade 1s var(--ease) 0.5s forwards; }
 .hero-brand span { background:linear-gradient(135deg, var(--teal), #7DD3C0, var(--teal-dim)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
@@ -301,14 +301,14 @@ body { font-family:var(--font-body); background:var(--bg-deep); color:var(--crea
   .hero-credentials { gap:16px; }
   .modal-card { max-height:92vh; }
   .packages-grid { gap:32px; }
-  .hero-portrait { width:175px; max-height:260px; }
+  .hero-portrait { width:245px; max-height:364px; }
   .hero-logo-img { width:144px; }
-  .hero-portrait-wrap::before { width:220px; height:220px; }
+  .hero-portrait-wrap::before { width:308px; height:308px; }
 }
 @media(min-width:1200px) {
-  .hero-portrait { width:260px; max-height:400px; }
+  .hero-portrait { width:364px; max-height:560px; }
   .hero-logo-img { width:224px; }
-  .hero-portrait-wrap::before { width:340px; height:340px; }
+  .hero-portrait-wrap::before { width:476px; height:476px; }
 }
 
 /* ═══════ REVEAL (legacy fallback) ═══════ */
@@ -360,19 +360,46 @@ body.cursor-click .c-cursor-ring { width:28px; height:28px; }
 
 /* ═══════ SVG STROKE DRAW-IN ═══════ */
 .pillar-icon svg path, .pillar-icon svg line, .pillar-icon svg polyline, .pillar-icon svg circle { transition:stroke-dashoffset 1.2s var(--ease); }
-/* ═══════ GGMC JURY SECTION ═══════ */
-.ggmc-section{padding:80px 0;text-align:center}
-.ggmc-section .container{max-width:680px;margin:0 auto;padding:0 24px}
-.ggmc-card{background:var(--bg-card);border:1px solid rgba(45,212,191,.14);border-radius:18px;padding:clamp(36px,6vw,56px) clamp(24px,5vw,48px);position:relative;overflow:hidden}
-.ggmc-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.07) 0%,transparent 68%);pointer-events:none}
-.ggmc-overline{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--teal-dim);margin:0 0 22px}
-.ggmc-logo{width:clamp(110px,38%,200px);height:auto;display:block;margin:0 auto 26px;opacity:.92;filter:drop-shadow(0 4px 18px rgba(45,212,191,.2))}
-.ggmc-title{font-family:var(--font-display);font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;color:#fff;letter-spacing:.03em;margin:0 0 6px}
-.ggmc-subtitle{font-size:.85rem;color:rgba(255,255,255,.42);margin:0 0 18px;letter-spacing:.08em}
-.ggmc-dates{font-size:1.05rem;color:var(--teal);font-weight:600;margin:0 0 18px;letter-spacing:.04em}
-.ggmc-meta{display:flex;align-items:center;justify-content:center;gap:10px;font-size:.77rem;color:rgba(255,255,255,.36);letter-spacing:.1em;text-transform:uppercase;margin:0 0 30px}
-.ggmc-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--teal-dim);opacity:.5;flex-shrink:0}
-.ggmc-role-tag{display:inline-block;padding:9px 26px;border:1px solid rgba(45,212,191,.32);border-radius:99px;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:rgba(45,212,191,.07)}
+/* ═══════ HERO JURY BADGE ═══════ */
+.hero-jury-badge{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:10px 22px 13px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.22);border-radius:14px;margin-bottom:22px;opacity:0;overflow:visible;animation:heroFade 1s var(--ease) 0.9s forwards,hjbPulse 3.5s ease 2.5s infinite}
+.hero-jury-badge::before{content:'';position:absolute;inset:-1px;border-radius:14px;background:linear-gradient(135deg,rgba(45,212,191,.12) 0%,transparent 50%,rgba(200,169,81,.08) 100%);pointer-events:none;z-index:0}
+.hjb-label{position:relative;z-index:1;font-size:7.5px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--teal-dim)}
+.hjb-event{position:relative;z-index:1;font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.hjb-role{position:relative;z-index:1;font-size:.72rem;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
+.hjb-dates{position:relative;z-index:1;font-size:.68rem;color:rgba(255,255,255,.36);letter-spacing:.08em;margin-top:2px}
+.hjb-sparks{position:absolute;top:50%;left:50%;width:0;height:0;pointer-events:none;z-index:2}
+.hjb-spark{position:absolute;border-radius:50%;margin:-2px;opacity:0;animation-duration:2.8s;animation-timing-function:ease-out;animation-iteration-count:infinite;animation-name:hjbSpark}
+.hjb-spark:nth-child(odd){width:4px;height:4px;background:var(--teal)}
+.hjb-spark:nth-child(even){width:3px;height:3px;margin:-1.5px;background:var(--gold)}
+.hjb-spark:nth-child(1){animation-delay:1.0s;--tx:0px;--ty:-56px}
+.hjb-spark:nth-child(2){animation-delay:1.7s;--tx:40px;--ty:-40px}
+.hjb-spark:nth-child(3){animation-delay:2.4s;--tx:56px;--ty:0px}
+.hjb-spark:nth-child(4){animation-delay:3.1s;--tx:40px;--ty:40px}
+.hjb-spark:nth-child(5){animation-delay:3.8s;--tx:0px;--ty:56px}
+.hjb-spark:nth-child(6){animation-delay:4.5s;--tx:-40px;--ty:40px}
+.hjb-spark:nth-child(7){animation-delay:5.2s;--tx:-56px;--ty:0px}
+.hjb-spark:nth-child(8){animation-delay:5.9s;--tx:-40px;--ty:-40px}
+@keyframes hjbSpark{0%{transform:translate(0,0) scale(0);opacity:0}12%{transform:translate(0,0) scale(1.5);opacity:1}55%{transform:translate(calc(var(--tx)*.65),calc(var(--ty)*.65)) scale(.9);opacity:.7}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
+@keyframes hjbPulse{0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,0)}50%{box-shadow:0 0 24px 6px rgba(45,212,191,.13),0 0 0 1px rgba(45,212,191,.14)}}
+@media(prefers-reduced-motion:reduce){.hjb-spark{animation:none!important}.hero-jury-badge{animation:heroFade 1s var(--ease) 0.9s forwards!important}}
+/* ═══════ JURY TIMELINE SECTION ═══════ */
+.jury-timeline-section{padding:90px 0;text-align:center}
+.jury-timeline-section .container{max-width:780px;margin:0 auto;padding:0 24px}
+.jt-heading{font-family:var(--font-display);font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:700;color:#fff;letter-spacing:.03em;margin:0 0 52px}
+.jt-track{display:flex;flex-direction:column;align-items:center;gap:0}
+.jt-event{width:100%;max-width:540px}
+.jt-card{background:var(--bg-card);border:1px solid rgba(45,212,191,.14);border-radius:18px;padding:clamp(30px,5vw,48px) clamp(20px,4vw,40px);position:relative;overflow:hidden;transition:border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.jt-card:hover{border-color:rgba(45,212,191,.3);box-shadow:0 8px 40px rgba(45,212,191,.09)}
+.jt-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.07) 0%,transparent 65%);pointer-events:none}
+.jt-logo{width:clamp(100px,36%,185px);height:auto;display:block;margin:0 auto 22px;opacity:.92;filter:drop-shadow(0 4px 16px rgba(45,212,191,.18))}.jt-logo-paris{width:clamp(200px,85%,380px);height:auto;padding:10px 20px;background:#fff;border-radius:12px;opacity:1;filter:none;margin-bottom:20px;box-shadow:0 2px 18px rgba(0,0,0,.18)}
+.jt-overline{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--teal-dim);margin:0 0 8px}
+.jt-title{font-family:var(--font-display);font-size:clamp(1.3rem,4vw,1.85rem);font-weight:700;color:#fff;margin:0 0 5px;letter-spacing:.02em}
+.jt-subtitle{font-size:.82rem;color:rgba(255,255,255,.4);margin:0 0 14px;letter-spacing:.06em}
+.jt-dates{font-size:1rem;color:var(--teal);font-weight:600;margin:0 0 18px;letter-spacing:.04em}
+.jt-role-tag{display:inline-block;padding:8px 22px;border:1px solid rgba(45,212,191,.3);border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);background:rgba(45,212,191,.07)}
+.jt-connector{display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:8px}
+.jt-line{width:2px;height:52px;background:linear-gradient(to bottom,rgba(45,212,191,.35),rgba(200,169,81,.25));border-radius:2px}
+.jt-next-label{font-size:7.5px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.22)}
 
 </style>
 </head>
@@ -407,6 +434,23 @@ body.cursor-click .c-cursor-ring { width:28px; height:28px; }
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero" data-section="Home">
   <img src="images/new%20healwell%20logoo%20600px.png" alt="Healwell" class="hero-logo-img">
+
+  <div class="hero-jury-badge">
+    <div class="hjb-sparks">
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+      <span class="hjb-spark"></span>
+    </div>
+    <span class="hjb-label">Jury Appointment · 2026</span>
+    <span class="hjb-event">GGMC München</span>
+    <span class="hjb-role">Member of the Jury</span>
+    <span class="hjb-dates">6 · 8 March</span>
+  </div>
 
   <div class="hero-portrait-wrap">
     <img src="images/Matthew%20transparent%20portrait%20new%20800px%20only.png" alt="Matthew Hua" class="hero-portrait">
@@ -654,23 +698,36 @@ body.cursor-click .c-cursor-ring { width:28px; height:28px; }
   </div>
 </section>
 
-<!-- ══════════════ GGMC JURY ══════════════ -->
-<section class="ggmc-section sr">
+<!-- ══════════════ JURY TIMELINE ══════════════ -->
+<section class="jury-timeline-section sr">
   <div class="container">
-    <div class="ggmc-card">
-      <p class="ggmc-overline">International Competition</p>
-      <img class="ggmc-logo" src="https://evoryder8-collab.github.io/iConstantine-Packages-v2/LOGO.png" alt="GGMC — German Global Massage Championship" loading="lazy">
-      <h2 class="ggmc-title">GGMC 2026 · München</h2>
-      <p class="ggmc-subtitle">German Global Massage Championship</p>
-      <p class="ggmc-dates">6 · 8 March 2026</p>
-      <div class="ggmc-meta">
-        <span>Munich</span>
-        <span class="ggmc-meta-dot"></span>
-        <span>International</span>
-        <span class="ggmc-meta-dot"></span>
-        <span>2026</span>
+    <p class="section-label">Jury Appointments · 2026</p>
+    <h2 class="jt-heading">International Jury Circuit</h2>
+    <div class="jt-track">
+
+      <div class="jt-event">
+        <div class="jt-card">
+          <img class="jt-logo" src="https://evoryder8-collab.github.io/iConstantine-Packages-v2/LOGO.png" alt="GGMC — German Global Massage Championship" loading="lazy">
+          <p class="jt-overline">Munich · Germany</p>
+          <h3 class="jt-title">GGMC 2026</h3>
+          <p class="jt-subtitle">German Global Massage Championship</p>
+          <p class="jt-dates">6 · 8 March 2026</p>
+          <span class="jt-role-tag">Member of the Jury</span>
+        </div>
       </div>
-      <span class="ggmc-role-tag">Member of the Jury</span>
+
+      <div class="jt-connector">
+        <div class="jt-line"></div>
+        <span class="jt-next-label">Then</span>
+      </div>
+
+      <div class="jt-event">
+        <div class="jt-card jt-card-paris">
+          <img class="jt-logo jt-logo-paris" src="https://evoryder8-collab.github.io/healwell/newma-PARIS-2026-1024x397.png" alt="Euro Massage Championship 2026 — 6th Edition · Paris, France · 22–24 May" loading="lazy">
+          <span class="jt-role-tag">Member of the Jury</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
