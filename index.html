@@ -360,6 +360,19 @@ body.cursor-click .c-cursor-ring { width:28px; height:28px; }
 
 /* ═══════ SVG STROKE DRAW-IN ═══════ */
 .pillar-icon svg path, .pillar-icon svg line, .pillar-icon svg polyline, .pillar-icon svg circle { transition:stroke-dashoffset 1.2s var(--ease); }
+/* ═══════ GGMC JURY SECTION ═══════ */
+.ggmc-section{padding:80px 0;text-align:center}
+.ggmc-section .container{max-width:680px;margin:0 auto;padding:0 24px}
+.ggmc-card{background:var(--bg-card);border:1px solid rgba(45,212,191,.14);border-radius:18px;padding:clamp(36px,6vw,56px) clamp(24px,5vw,48px);position:relative;overflow:hidden}
+.ggmc-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.07) 0%,transparent 68%);pointer-events:none}
+.ggmc-overline{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--teal-dim);margin:0 0 22px}
+.ggmc-logo{width:clamp(110px,38%,200px);height:auto;display:block;margin:0 auto 26px;opacity:.92;filter:drop-shadow(0 4px 18px rgba(45,212,191,.2))}
+.ggmc-title{font-family:var(--font-display);font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;color:#fff;letter-spacing:.03em;margin:0 0 6px}
+.ggmc-subtitle{font-size:.85rem;color:rgba(255,255,255,.42);margin:0 0 18px;letter-spacing:.08em}
+.ggmc-dates{font-size:1.05rem;color:var(--teal);font-weight:600;margin:0 0 18px;letter-spacing:.04em}
+.ggmc-meta{display:flex;align-items:center;justify-content:center;gap:10px;font-size:.77rem;color:rgba(255,255,255,.36);letter-spacing:.1em;text-transform:uppercase;margin:0 0 30px}
+.ggmc-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--teal-dim);opacity:.5;flex-shrink:0}
+.ggmc-role-tag{display:inline-block;padding:9px 26px;border:1px solid rgba(45,212,191,.32);border-radius:99px;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:rgba(45,212,191,.07)}
 
 </style>
 </head>
@@ -637,6 +650,27 @@ body.cursor-click .c-cursor-ring { width:28px; height:28px; }
         <span class="award-tag">🏅 Wim Hof Method Certified</span>
         <span class="award-tag">🏅 Champ of the Champs Award UMC2023</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ GGMC JURY ══════════════ -->
+<section class="ggmc-section sr">
+  <div class="container">
+    <div class="ggmc-card">
+      <p class="ggmc-overline">International Competition</p>
+      <img class="ggmc-logo" src="https://evoryder8-collab.github.io/iConstantine-Packages-v2/LOGO.png" alt="GGMC — German Global Massage Championship" loading="lazy">
+      <h2 class="ggmc-title">GGMC 2026 · München</h2>
+      <p class="ggmc-subtitle">German Global Massage Championship</p>
+      <p class="ggmc-dates">6 · 8 March 2026</p>
+      <div class="ggmc-meta">
+        <span>Munich</span>
+        <span class="ggmc-meta-dot"></span>
+        <span>International</span>
+        <span class="ggmc-meta-dot"></span>
+        <span>2026</span>
+      </div>
+      <span class="ggmc-role-tag">Member of the Jury</span>
     </div>
   </div>
 </section>
